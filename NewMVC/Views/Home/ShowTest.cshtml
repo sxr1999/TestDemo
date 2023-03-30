@@ -1,0 +1,24 @@
+﻿@using NewMVC.Data;
+@model IEnumerable<Professor>
+@inject ApplicationDbContext dbcontext
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td class="fa-lg">
+            <a asp-action="Edit" asp-route-id="@item.Id"><i class="espacoIcone fa-solid fa-user-pen"></i></a>
+
+            <a asp-action="Delete" asp-route-id="@item.Id"><i class="espacoIcone fa-solid fa-trash-can"></i></a>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CourseId)
+        </td>
+        <td>
+           @dbcontext.cursosModels.Where(x => x.id == item.CourseId).Select(y => y.CursoName).FirstOrDefault();       
+        </td>
+        <br>
+    </tr>
+}

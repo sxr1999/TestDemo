@@ -1,0 +1,61 @@
+﻿@model ViewTestModel
+
+<form>
+    <div>
+        <g2>Select your Room</g2>
+        <br />
+        <select asp-for="@Model.location.RoomId" asp-items="ViewBag.rooms"></select>
+    </div>
+    <br />
+    <div>
+        <g2>Select your Floor</g2>
+        <br />
+        <select asp-for="@Model.location.FloorId" asp-items="ViewBag.floors"></select>
+    </div>
+    <br />
+    <div class="form-group">
+        <label asp-for="@Model.location.Row"></label>
+        <input asp-for="@Model.location.Row" />
+
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.equipment.Name"></label>
+        <input asp-for="@Model.equipment.Name" />
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.equipment.Amount"></label>
+        <input asp-for="@Model.equipment.Amount" />
+    </div>
+
+    <button type="button">Create</button>
+
+    <button type="button" id="Edit" value="value1" data-value="value2" class="link-button" onclick="Watchlist(this)">
+        Add To Watchlist
+    </button>
+
+    
+</form>
+
+<script>
+    function Watchlist(button) {
+        var result1 = button.value;
+        var result2 = button.getAttribute("data-value");
+        var formdata = new FormData();
+        formdata.append("stockTicker",result1);
+        formdata.append("userId", result2);
+
+        $.ajax({
+            type: 'POST',
+            url: '/Home/Watchlist',
+            data: formdata,
+            processData: false,
+            contentType: false
+        });
+
+    }
+</script>
+
+
+
+
+<a href="@Url.Action("Watchlist", "Home", new { stockTicker = "sss", userId = "bbbb"})">Test</a>

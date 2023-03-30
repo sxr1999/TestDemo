@@ -1,0 +1,82 @@
+﻿@{
+    ViewData["Title"] = "Create";
+}
+@model Quiz
+
+<h1>Create</h1>
+
+<h4>Quiz</h4>
+<hr />
+<div class="row">
+    <div class="w-75">
+        <form id="myform" asp-action="Create" method="post" class="p-3">
+
+            <div class="form-group">
+                <label asp-for="Name" class="control-label">Quiz Name</label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div id="questionRows" class="form-group w-100">
+                @Html.EditorFor(model => model.Questions)
+                <button type="button" id="AddQuestion" class="btn btn-primary mt-2">Add Question</button>
+            </div>
+
+            <div class="form-group mt-2">
+                <input id="submit" type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+        <script>
+
+            $("#submitbutton").click(function (e) {
+                e.preventDefault();
+
+                console.log("Serialized Data: ");
+                console.log($('#myform').serialize())
+
+                $.ajax({
+                    async: true,
+                    data: $('#myform').serialize(),
+                    method: 'post',
+                    url: "Quizes/AddQuestion",
+                    success: function () {
+                    }
+                });
+
+            });
+
+            $("#AddQuestion").click(function () {
+
+                console.log("Serialized Data: ");
+                console.log($('#myform').serialize())
+                console.log($('#questionRows').serialize())
+
+                $.ajax({
+                    url: '@Url.Action("AddBlankQuestion", "Quizes")',
+                    cache: false,
+                    success: function (html) { $("#questionRows").append(html); },
+                    error: function (xhr, status, error) {
+                        console.log(xhr.responseText);
+                    }
+                });
+                return false;
+            });
+
+            $("a.deleteRow").on("click", function () {
+                $(this).parents("div.editorRow:first").remove();
+                return false;
+            });
+        </script>
+}

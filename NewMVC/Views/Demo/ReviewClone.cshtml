@@ -1,0 +1,30 @@
+﻿@model NewMVC.Models2.ReviewCloneVM
+
+<h1>ReviewClone</h1>
+<form method="post">
+    @*foreach (var item in Model)*@
+    @for (int i = 0; i < Model.ClonePosts.Count; i++)
+    {
+        <tr>
+            <td>
+                @Html.EditorFor(x => x.ClonePosts[i].PostNumber)
+            </td>
+            <td>
+                @Html.EditorFor(x => x.ClonePosts[i].ItemNumber)
+            </td>
+            <td>
+                @Html.EditorFor(x => x.ClonePosts[i].ItemData)
+            </td>
+            <td>
+                @Html.EditorFor(x => x.ClonePosts[i].ItemSelected)
+            </td>
+            
+        </tr>
+        <br />
+    }
+
+    <td>
+        <input type="submit" value="Save" />
+    </td>
+   
+</form>

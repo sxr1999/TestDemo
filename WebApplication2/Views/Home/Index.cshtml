@@ -1,0 +1,18 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@model IEnumerable<Templates>
+
+
+<form>
+    @if (Model != null)
+    {
+
+        foreach (var template in Model.Distinct())
+        {
+            <option>@template.Item2</option>
+        }
+    }
+</form>
+
+

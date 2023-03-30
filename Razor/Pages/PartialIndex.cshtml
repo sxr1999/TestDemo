@@ -1,0 +1,35 @@
+﻿@page
+@model Razor.Pages.PartialIndexModel
+@Html.AntiForgeryToken()
+@{
+}
+
+<h1>@Model.StatusReport.Name</h1>
+
+<h1 id="result">@Model.status</h1>
+
+<partial name="_MyPartial" model="@Model.StatusReport" />
+
+@section Scripts{
+    <script>
+        $("#sel-options").change(function () {
+            var value = $("#sel-options option:selected").val();
+            var data = {
+                "value": value
+            };
+            $.ajax({
+                type: 'Post',
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader("XSRF-TOKEN",
+                        $('input:hidden[name="__RequestVerificationToken"]').val());
+                },
+                url: '@Url.Page("PartialIndex","Ajax")',
+                data: data,
+                
+                success: function (data) {
+                    $("#result").html(data)
+                }
+            })
+        })
+    </script>
+}

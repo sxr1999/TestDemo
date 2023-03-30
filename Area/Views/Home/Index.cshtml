@@ -1,0 +1,19 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@model StaffInfoModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+<div class="text-center">
+    <form asp-controller="Home" asp-action="InputInfo" method="post" class="form-horizontal col-md-offset-4 col-md-8">
+       
+        @{
+            var data = Model;
+        }
+        <div class="form-group form-inline">
+            <label asp-for="workNum" class="control-label col-sm-4"></label>
+            <input type="text" asp-for="workNum" class="form-control col-sm-4" readonly="readonly"/>
+        </div>
+    </form>
+</div>

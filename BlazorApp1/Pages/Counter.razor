@@ -1,0 +1,35 @@
+﻿@page "/counter"
+
+
+<PageTitle>Counter</PageTitle>
+
+<h1>Counter</h1>
+
+<p role="status">Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+@code {
+    private int currentCount = 0;
+
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+
+    private Dictionary<object, object> ParseTokenClaims(string access_token)
+    {
+
+        var jwt = new JwtSecurityTokenHandler().ReadJwtToken(access_token);
+
+        var claims = jwt.Claims.ToList();
+
+        Dictionary<object, object> result = new Dictionary<object, object>();
+        foreach (var claim in claims)
+        {
+            result.Add(claim.ToString().Trim().Split(":")[0], claim.ToString().Trim().Split(":")[1]);
+        }
+
+        return result;
+    }
+}

@@ -1,0 +1,17 @@
+﻿@model Officer
+
+    <form method="post">
+        <input asp-for="OfficerLastName" />
+        <input asp-for="OfficerFirstName" />
+        <input asp-for="OfficerDisplayName" />
+        <input asp-for=OfficerMiddleInitial />
+        <td style="width: 40%">
+            <div class="mb-3">
+                <label asp-for="Agency"></label>
+                <select asp-for="AgencyId" id="Select3" class="form-select" asp-items="@ViewBag.data">
+                    <option value="" selected disabled>---Select Associated Agency---</option>
+                </select>
+            </div>
+        </td>
+        <button type="submit">Submit</button>  
+    </form>

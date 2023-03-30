@@ -1,0 +1,46 @@
+﻿@page
+@model Razor.Pages.WeatherModel
+@{
+}
+
+
+<form>
+    <div class="input-group">
+        <span class="input-group-text" for="weather" id="icone">
+           
+        </span>
+        <select id="weather" class="form-control" onchange="Test()">
+            <option selected disabled>Current Weather</option>
+            <option value="Sunny">Sunny</option>
+            <option value="Partially Cloudy">Partially Cloudy</option>
+            <option value="Windy">Windy</option>
+            <option value="Cloudy">Cloudy</option>
+            <option value="Drizzle">Drizzle</option>
+            <option value="Rainy">Rainy</option>
+            <option value="Stormy">Stormy</option>
+        </select>
+    </div>
+</form>
+
+@section Scripts{
+    <script>
+        function Test(){
+            var result = $("#weather option:selected").val();
+            var data = {
+                "weather" : result
+            };
+            $.ajax({
+                type: 'Get',
+                url: '@Url.Page("Weather","Ajax")',
+                data: data,
+                contentType: "application/json",
+                success: function (result) {
+                    var html = "<img src = 'data:image/svg+xml;base64,"+result +"'/>"
+
+                        
+                    $("#icone").html(html)
+                }
+            })
+        }
+    </script>
+}

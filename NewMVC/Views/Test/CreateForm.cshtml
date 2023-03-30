@@ -1,0 +1,30 @@
+﻿<form asp-action="Create123">
+
+    <input type="checkbox" id="FirstBox" />Is this test?
+    <br />
+    <input id="test1" class="form-control" />    <br />
+    <input id="test2" class="form-control" />
+    <span id="lblMessage" style="display: none; color: red;">Please fill out at least one text box</span>
+    <br />
+    <button type="submit" id="myBtn1" onclick="Validate();return false;">Submit</button>
+
+</form>
+
+@section scripts {
+    <script type="text/javascript">
+        function Validate() {
+            var message = document.getElementById("lblMessage"); a
+            message.style.display = "none";
+            var fb = document.getElementById("FirstBox");
+            var sb = document.getElementById("test1");
+            var tb = document.getElementById("test2");
+            if (fb.checked) {
+                if (fb.checked) {
+                    if (sb.value == "" && tb.value == "")
+                        message.style.display = "block";
+                }
+            }
+        }
+
+    </script>
+}

@@ -1,0 +1,17 @@
+﻿@model MVC1
+
+<form method="post">
+    <div class="form-group row mb-3" style="display: grid; align-items: end; height: 70px;">
+        <div class="col-md">
+            <div class="form-check" style="margin-bottom:0px;">
+                @Html.CheckBoxFor(model => model.Lease.HotYN, new { @class = "form-check-input" })
+                @Html.LabelFor(model => model.Lease.HotYN, htmlAttributes: new { @class = "form-check-label text-end fw-bold" })
+            </div>
+            <div class="form-check" style="margin-bottom:0px;">
+                @Html.CheckBoxFor(model => model.Lease.NTLS, new { @class = "form-check-input" })
+                @Html.LabelFor(model => model.Lease.NTLS, htmlAttributes: new { @class = "form-check-label text-end fw-bold" })
+            </div>
+        </div>
+    </div>
+    <button type="submit">Submit</button>
+</form>

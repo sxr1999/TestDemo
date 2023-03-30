@@ -1,0 +1,13 @@
+﻿@model FileViewModel
+
+<form enctype="multipart/form-data" method="post">
+    <dl>
+        <dt>
+            <label>upload</label>
+        </dt>
+        <dd>
+            <input type="file" asp-for="@Model.FormFile" multiple />
+        </dd>
+    </dl> 
+    <input class="btn" type="submit" value="upload" />
+</form>

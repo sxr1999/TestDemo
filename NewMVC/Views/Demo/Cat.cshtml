@@ -1,0 +1,30 @@
+﻿@{
+    int NumberOfCats = 12;
+}
+@model NewMVC.Models2.CatHotel
+
+<form method="post">
+    @for (int i = 0; i < NumberOfCats; i++)
+    {
+        <div class="form-group">
+            <div class="col-md-3">
+                <div>
+                    @Html.TextBoxFor(model => model.Cats[i].IDNumber,
+                new { @class = "form-control", placeholder = "Cat ID *"})
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div>
+                    @Html.TextBoxFor(model => model.Cats[i].Name,
+                new { @class = "form-control", placeholder = "Cat Name *"})
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div>
+                    @Html.TextBoxFor(model => model.Cats[i].Comment,
+                new { @class = "form-control", placeholder = "Comment" })
+                </div>
+            </div>
+        </div>
+    }
+</form>
